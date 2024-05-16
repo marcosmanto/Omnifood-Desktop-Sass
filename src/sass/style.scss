@@ -31,6 +31,13 @@ $text-gray: #555;
   box-sizing: border-box;
 }
 
+html {
+  // instead to define root font size as fixed value (10px),
+  // percentage respect user intention to enlarge or reduce text size
+  // now 1rem = 10px Use in the design only rem instead of pixels
+  font-size: 62.5%; /* 10px / 16px => 62.5% percentage of user's browser font-size setting */
+}
+
 body {
   font-family: $ff-sans;
   line-height: 1;
