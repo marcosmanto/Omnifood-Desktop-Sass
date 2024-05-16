@@ -1,0 +1,38 @@
+// --- 01 TYPOGRAPHY ---
+
+/*FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
+
+// font-families
+$ff-sans: "Inter", sans-serif;
+
+// font-weights
+$fw-regular: 400;
+$fw-semibold-light: 500;
+$fw-semibold: 600;
+$fw-bold: 700;
+
+// --- 02 COLORS --- yeun.github.io/open-color/
+$primary: #e67e22;
+$text-gray: #555;
+
+// --- 05 SHADOWS ---
+
+// --- 06 BORDER-RADIUS ---
+
+// --- 07 WHITESPACE ---
+
+/* SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $ff-sans;
+  line-height: 1;
+  color: $text-gray;
+}
