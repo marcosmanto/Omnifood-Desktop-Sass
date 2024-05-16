@@ -4,7 +4,7 @@
 10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98 */
 
 // font-families
-$ff-sans: "Inter", sans-serif;
+$ff-sans: "Rubik", sans-serif;
 
 // font-weights
 $fw-regular: 400;
@@ -14,11 +14,17 @@ $fw-bold: 700;
 
 // --- 02 COLORS --- yeun.github.io/open-color/
 $primary: #e67e22;
+$primary-dark: #cf711f;
+$primary-light: #fdf2e9;
 $text-gray: #555;
+$text-gray-dark: #333;
+
+$layout-max-width: 130rem;
 
 // --- 05 SHADOWS ---
 
 // --- 06 BORDER-RADIUS ---
+$design-border-radius: 0.9rem;
 
 // --- 07 WHITESPACE ---
 
@@ -42,4 +48,126 @@ body {
   font-family: $ff-sans;
   line-height: 1;
   color: $text-gray;
+}
+
+@mixin container {
+  max-width: $layout-max-width;
+  margin-inline: auto;
+}
+
+.margin-right-sm {
+  margin-right: 1.6rem !important;
+}
+
+.section-hero {
+  background-color: $primary-light;
+  padding: 9.6rem 0;
+}
+
+.hero {
+  @include container;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 9.6rem;
+  img {
+    width: 100%;
+  }
+
+  &-description {
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
+  }
+}
+
+.heading {
+  &-primary {
+    font-size: 5.2rem;
+    font-weight: bold;
+    line-height: 1.05;
+    color: $text-gray-dark;
+    letter-spacing: -0.5px;
+    margin-bottom: 3.2rem;
+  }
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+
+  &:link,
+  &:visited {
+    font-weight: $fw-semibold;
+    //display: inline-block;
+    text-decoration: none;
+    font-size: 2rem;
+    padding: 1.6rem 3.2rem;
+    border-radius: $design-border-radius;
+    transition: all 0.3s;
+  }
+
+  &--full {
+    &:link,
+    &:visited {
+      background-color: $primary;
+      color: white;
+    }
+
+    &:hover,
+    &:active {
+      background-color: $primary-dark;
+    }
+  }
+
+  &--outline {
+    &:link,
+    &:visited {
+      background-color: white;
+      color: $text-gray;
+    }
+
+    &:hover,
+    &:active {
+      background-color: $primary-light;
+      box-shadow: inset 0 0 0 3px white;
+    }
+  }
+
+  &-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}
+
+.delivered-meals {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 8rem;
+  p {
+    font-size: 1.8rem;
+    font-weight: $fw-semibold;
+    span {
+      color: $primary-dark;
+      font-weight: $fw-bold;
+    }
+  }
+}
+
+.delivered-imgs {
+  display: flex;
+  img {
+    height: 4.8rem;
+    width: 4.8rem;
+    border-radius: 50%;
+    margin-right: -1.6rem;
+    border: 0.3rem solid $primary-light;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
