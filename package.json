@@ -6,7 +6,7 @@
   "scripts": {
     "build:sass": "sass --no-source-map src/sass:public/css",
     "clear-build": "rimraf public",
-    "copy:assets": "copyfiles -u 1 ./src/assets/**/* public",
+    "copy:assets": "copyfiles -u 1 ./src/assets/* ./src/assets/**/* public",
     "copy:html": "copyfiles -u 1 ./src/*.html public",
     "copy": "npm run clear-build && npm-run-all --parallel copy:*",
     "watch:assets": "onchange './src/assets/**/*' -- npm run copy:assets",
