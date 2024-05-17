@@ -7,8 +7,8 @@
 $ff-sans: "Rubik", sans-serif;
 
 // font-weights
-$fw-regular: 400;
-$fw-semibold-light: 500;
+$fw-default: 400;
+$fw-medium: 500;
 $fw-semibold: 600;
 $fw-bold: 700;
 
@@ -55,30 +55,13 @@ body {
   margin-inline: auto;
 }
 
+/*************************************/
+/* COMPONENTS */
+/*************************************/
+
+/*--- REUSABLE ---*/
 .margin-right-sm {
   margin-right: 1.6rem !important;
-}
-
-.section-hero {
-  background-color: $primary-light;
-  padding: 9.6rem 0;
-}
-
-.hero {
-  @include container;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  gap: 9.6rem;
-  img {
-    width: 100%;
-  }
-
-  &-description {
-    font-size: 2rem;
-    line-height: 1.6;
-    margin-bottom: 4.8rem;
-  }
 }
 
 .heading {
@@ -139,6 +122,89 @@ body {
   &-icon {
     width: 2.4rem;
     height: 2.4rem;
+  }
+}
+
+.nav-cta {
+  &:link,
+  &:visited {
+    display: inline-block;
+    color: white;
+    background-color: $primary;
+    font-size: 2rem;
+    font-weight: $fw-medium;
+    padding: 1.2rem 2.4rem;
+    border-radius: $design-border-radius;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  &:hover,
+  &:active {
+    background-color: $primary-dark;
+  }
+}
+
+/*--- HEADER ---*/
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $primary-light;
+
+  height: 9.6rem;
+  padding: 0 4.8rem;
+}
+
+.logo {
+  height: 2.2rem;
+}
+
+.main-nav-list {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  list-style: none;
+}
+
+.main-nav-link {
+  &:link,
+  &:visited {
+    display: inline-block;
+    text-decoration: none;
+    color: $text-gray-dark;
+    font-weight: $fw-medium;
+    font-size: 1.8rem;
+    transition: all 0.3s;
+  }
+
+  &:hover,
+  &:active {
+    color: $primary-dark;
+  }
+}
+
+/*--- HERO ---*/
+.section-hero {
+  background-color: $primary-light;
+  padding: 4.8rem 0 9.6rem 0;
+}
+
+.hero {
+  @include container;
+  padding: 0 4.8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 9.6rem;
+  img {
+    width: 100%;
+  }
+
+  &-description {
+    font-size: 2rem;
+    line-height: 1.6;
+    margin-bottom: 4.8rem;
   }
 }
 
