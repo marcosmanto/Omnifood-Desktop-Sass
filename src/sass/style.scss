@@ -12,14 +12,24 @@ $fw-medium: 500;
 $fw-semibold: 600;
 $fw-bold: 700;
 
+$line-height-default: 1;
+$line-height-small: 1.05;
+$line-height-medium: 1.2;
+$line-height-paragraph-default: 1.6;
+
+$letter-spacing-compact: -0.5px;
+$letter-spacing-small: 0.75px;
+
 // --- 02 COLORS --- yeun.github.io/open-color/
 $primary: #e67e22;
 $primary-dark: #cf711f;
 $primary-light: #fdf2e9;
+$primary-medium: #fae5d3;
 $text-gray: #555;
 $text-gray-dark: #333;
+$text-gray-light: #ddd;
 
-$layout-max-width: 130rem;
+$layout-max-width: 120rem;
 
 // --- 05 SHADOWS ---
 
@@ -46,13 +56,59 @@ html {
 
 body {
   font-family: $ff-sans;
-  line-height: 1;
+  line-height: $line-height-default;
   color: $text-gray;
 }
 
-@mixin container {
-  max-width: $layout-max-width;
+button.zoom-toggle {
+  position: fixed;
+  bottom: 4px;
+  left: 4px;
+  border: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: $fw-semibold;
+  text-decoration: none;
+  font-size: 2rem;
+  border-radius: 9px;
+  transition: all 0.3s;
+  padding: 6px;
+  background-color: $text-gray-light;
+  cursor: pointer;
+  &:hover {
+    background-color: $primary-dark;
+    color: white;
+  }
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@mixin container($max: $layout-max-width) {
+  max-width: $max;
   margin-inline: auto;
+  padding: 0 4.8rem;
+}
+
+@mixin grid(
+  $cols,
+  $rows: 1,
+  $col-gap: 9.6rem,
+  $row-gap: 9.6rem,
+  $align-vertical: start
+) {
+  display: grid;
+  column-gap: $col-gap;
+  row-gap: $row-gap;
+  grid-template-columns: repeat($cols, 1fr);
+  grid-template-rows: repeat($rows, 1fr);
+  align-items: $align-vertical;
+}
+
+.container {
+  @include container;
 }
 
 /*************************************/
@@ -64,15 +120,41 @@ body {
   margin-right: 1.6rem !important;
 }
 
+@mixin heading {
+  font-weight: $fw-bold;
+  color: $text-gray-dark;
+  letter-spacing: $letter-spacing-compact;
+}
+
 .heading {
   &-primary {
+    @include heading;
     font-size: 5.2rem;
-    font-weight: bold;
-    line-height: 1.05;
-    color: $text-gray-dark;
-    letter-spacing: -0.5px;
+    line-height: $line-height-small;
     margin-bottom: 3.2rem;
   }
+  &-secondary {
+    @include heading;
+    font-size: 4.4rem;
+    line-height: $line-height-medium;
+    margin-bottom: 9.6rem;
+  }
+  &-tertiary {
+    @include heading;
+    font-size: 3rem;
+    line-height: $line-height-medium;
+    margin-bottom: 3.2rem;
+  }
+}
+
+.subheading {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: $fw-medium;
+  color: $primary-dark;
+  text-transform: uppercase;
+  margin-bottom: 1.6rem;
+  letter-spacing: $letter-spacing-small;
 }
 
 .btn {
@@ -191,7 +273,7 @@ body {
 }
 
 .hero {
-  @include container;
+  @include container(130rem);
   padding: 0 4.8rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -203,7 +285,7 @@ body {
 
   &-description {
     font-size: 2rem;
-    line-height: 1.6;
+    line-height: $line-height-paragraph-default;
     margin-bottom: 4.8rem;
   }
 }
@@ -235,5 +317,64 @@ body {
     &:last-child {
       margin-right: 0;
     }
+  }
+}
+
+/*--- How It Works SECTION ---*/
+.section-how {
+  margin: 9.6rem 0;
+}
+
+.step {
+  &-grid {
+    @include grid($cols: 2, $col-gap: 0rem);
+  }
+  &-text-box {
+  }
+  &-number {
+    font-size: 8.6rem;
+    font-weight: $fw-medium;
+    color: $text-gray-light;
+    margin-bottom: 1.2rem;
+  }
+  &-description {
+    font-size: 1.8rem;
+    line-height: 1.8;
+  }
+  &-img-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      border-radius: 50%;
+      background-color: $primary-light;
+      position: absolute;
+    }
+
+    &::before {
+      width: 60%;
+      padding-bottom: 60%;
+      z-index: -1;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+    }
+
+    &::after {
+      width: 45%;
+      padding-bottom: 45%;
+      background-color: $primary-medium;
+      z-index: -1;
+    }
+  }
+  &-img {
+    margin-top: 2rem;
+    width: 35%;
+    height: auto;
   }
 }
