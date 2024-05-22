@@ -19,6 +19,7 @@ $line-height-paragraph-default: 1.6;
 
 $letter-spacing-compact: -0.5px;
 $letter-spacing-small: 0.75px;
+$letter-spacing-smaller: 0.25px;
 
 // --- 02 COLORS --- yeun.github.io/open-color/
 $primary: #e67e22;
@@ -35,6 +36,7 @@ $layout-max-width: 120rem;
 
 // --- 06 BORDER-RADIUS ---
 $design-border-radius: 0.9rem;
+$design-border-radius-medium: 1.1rem;
 
 // --- 07 WHITESPACE ---
 
@@ -111,13 +113,27 @@ button.zoom-toggle {
   @include container;
 }
 
+strong {
+  font-weight: $fw-medium;
+}
+
 /*************************************/
 /* COMPONENTS */
 /*************************************/
 
 /*--- REUSABLE ---*/
+
+/* HELPER/SETINGS CLASSES */
 .margin-right-sm {
   margin-right: 1.6rem !important;
+}
+
+.margin-bottom-md {
+  margin-bottom: 4.8rem;
+}
+
+.center-text {
+  text-align: center;
 }
 
 @mixin heading {
@@ -171,7 +187,7 @@ button.zoom-toggle {
     font-size: 2rem;
     padding: 1.6rem 3.2rem;
     border-radius: $design-border-radius;
-    transition: all 0.3s;
+    transition: all 0.5s;
   }
 
   &--full {
@@ -224,6 +240,53 @@ button.zoom-toggle {
   &:hover,
   &:active {
     background-color: $primary-dark;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: $letter-spacing-smaller;
+  color: $text-gray-dark;
+  border-radius: 100px;
+  font-weight: $fw-semibold;
+  &--vegetarian {
+    background-color: #51cf66;
+  }
+  &--vegan {
+    background-color: #94d82d;
+  }
+  &--paleo {
+    background-color: #ffd43b;
+  }
+}
+
+.link {
+  &:link,
+  &:visited {
+    display: inline-block;
+    color: $primary;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: all 0.3s;
+  }
+
+  &:hover,
+  &:active {
+    color: $primary-dark;
+    border-bottom: 1px solid transparent;
+  }
+}
+
+@mixin flip($horizontal: true, $vertical: false) {
+  @if $horizontal {
+    transform: scaleX(-1);
+  }
+  @if $vertical {
+    transform: scaleY(-1);
   }
 }
 
@@ -401,4 +464,91 @@ button.zoom-toggle {
     width: 35%;
     height: auto;
   }
+}
+
+/*--- MEALS SECTION ---*/
+.section-meals {
+  padding: 9.6rem 0;
+}
+
+.meals-grid {
+  @include grid($cols: 3, $align-vertical: stretch);
+}
+
+.meal {
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.075);
+  border-radius: $design-border-radius-medium;
+  overflow: hidden;
+  transition: all 0.4s;
+
+  &:hover {
+    transform: translateY(-1.2rem);
+    box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.06);
+  }
+
+  &:nth-child(2) {
+    img {
+      @include flip;
+    }
+  }
+  &-content {
+    padding: 3.2rem 4.8rem 4.8rem 4.8rem;
+  }
+  &-img {
+    width: 100%;
+  }
+  &-title {
+    font-size: 2.4rem;
+    color: $text-gray-dark;
+    font-weight: $fw-semibold;
+    margin-bottom: 3.2rem;
+  }
+  &-attributes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  &-attribute {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+  }
+  &-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+    color: $primary;
+  }
+  &-tags {
+    margin-bottom: 1.2rem;
+    display: flex;
+    gap: 0.4rem;
+  }
+}
+
+.diets {
+  .list {
+    margin-top: -1.2rem;
+    margin-left: 1.2rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    &-icon {
+      font-size: 3rem;
+      color: $primary;
+    }
+    &-item {
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+    }
+  }
+}
+
+.all-recipes {
+  text-align: center;
+  font-size: 1.8rem;
 }
