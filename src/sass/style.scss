@@ -826,3 +826,12 @@ strong {
     }
   }
 }
+
+/*--- FOOTER SECTION ---*/
+footer {
+  padding: 9.6rem 0;
+}
+
+.footer-grid {
+  @include grid($cols: 5);
+}
