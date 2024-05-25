@@ -136,7 +136,7 @@ strong {
 }
 
 .margin-bottom-md {
-  margin-bottom: 4.8rem;
+  margin-bottom: 4.8rem !important;
 }
 
 .center-text {
@@ -701,4 +701,33 @@ strong {
 
 .grid-features {
   @include grid($cols: 4, $margin: 9.6rem 0 0 0);
+}
+
+.feature {
+  &-icon {
+    color: $primary;
+    height: 3.2rem;
+    width: 3.2rem;
+    margin-bottom: 3.2rem;
+    background-color: $primary-light;
+    padding: 1.6rem;
+    border-radius: 50%;
+  }
+  &-title {
+    font-size: 2.4rem;
+    color: $text-gray-dark;
+    font-weight: $fw-bold;
+    margin-bottom: 1.6rem;
+  }
+  &-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+  }
+}
+
+.plan-details {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-top: 4.8rem;
 }
