@@ -52,6 +52,11 @@ $icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' c
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.8rem transparentize($primary, 0.5);
+  }
 }
 
 html {
@@ -186,6 +191,7 @@ strong {
   align-items: center;
   gap: 0.8rem;
 
+  &,
   &:link,
   &:visited {
     font-weight: $fw-semibold;
@@ -195,6 +201,18 @@ strong {
     padding: 1.6rem 3.2rem;
     border-radius: $design-border-radius;
     transition: all 0.5s;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  &--form {
+    background-color: #45260a;
+    color: $primary-light;
+    &:hover {
+      background-color: #fff;
+      color: #555;
+    }
   }
 
   &--full {
@@ -730,4 +748,81 @@ strong {
   line-height: 1.6;
   text-align: center;
   margin-top: 4.8rem;
+}
+
+/*--- CALL-TO-ACTION SECTION ---*/
+.section-cta {
+  padding: 9.6rem 0;
+}
+.cta {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  box-shadow: 0 2.4rem 4.8rem rgba(0, 0, 0, 0.1);
+  border-radius: $design-border-radius-medium;
+  background-image: linear-gradient(to right bottom, #eb984e, $primary);
+  overflow: hidden;
+
+  & *:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.8rem transparentize($primary-light, 0.5);
+  }
+
+  .heading-secondary {
+    color: #45260a;
+    margin-bottom: 3.2rem;
+  }
+
+  &-text {
+    font-size: 1.8rem;
+    line-height: 1.8;
+    margin-bottom: 4.8rem;
+  }
+
+  &-text-box {
+    padding: 4.8rem 6.4rem 6.4rem 6.4rem;
+    color: #45260a;
+  }
+  &-img-box {
+    background-image: linear-gradient(
+        to right bottom,
+        transparentize(#eb984e, 0.65),
+        transparentize($primary, 0.65)
+      ),
+      url("/assets/eating.jpg");
+    background-size: cover;
+    background-position: center;
+  }
+
+  &-form {
+    display: grid;
+    @include grid(2, $col-gap: 3.2rem, $row-gap: 2.4rem);
+
+    label {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: $fw-medium;
+      margin-bottom: 1.2rem;
+    }
+    input,
+    select {
+      width: 100%;
+      padding: 1.2rem;
+      font-size: 1.8rem;
+      font-family: inherit;
+      border: none;
+      background-color: $primary-light;
+      border-radius: $design-border-radius;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      color: inherit;
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+
+    button {
+      align-self: end;
+      padding: 1.2rem;
+      font-size: 2.05rem;
+    }
+  }
 }
