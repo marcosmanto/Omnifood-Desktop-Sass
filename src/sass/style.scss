@@ -40,6 +40,11 @@ $design-border-radius-medium: 1.1rem;
 
 // --- 07 WHITESPACE ---
 
+// --- 08 SVG ICONS ---
+$icon-star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='%23#{str-slice('#{$primary}', 2)}' class='w-6 h-6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z' /%3E%3C/svg%3E%0A");
+$icon-checkmark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='none' stroke='%23#{str-slice('#{$primary}', 2)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M416 128L192 384l-96-96'/%3E%3C/svg%3E");
+$icon-close: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'%3E%3Cpath fill='none' stroke='%23#{str-slice('#{$primary}', 2)}' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M368 368L144 144M368 144L144 368'/%3E%3C/svg%3E");
+
 /* SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128 */
 
@@ -90,7 +95,7 @@ button.zoom-toggle {
 
 @mixin container($max: $layout-max-width) {
   max-width: $max;
-  margin-inline: auto;
+  margin-inline: auto !important;
   padding: 0 4.8rem;
 }
 
@@ -99,7 +104,8 @@ button.zoom-toggle {
   $rows: 1,
   $col-gap: 9.6rem,
   $row-gap: 9.6rem,
-  $align-vertical: start
+  $align-vertical: start,
+  $margin: 0
 ) {
   display: grid;
   column-gap: $col-gap;
@@ -107,6 +113,7 @@ button.zoom-toggle {
   grid-template-columns: repeat($cols, 1fr);
   grid-template-rows: repeat($rows, 1fr);
   align-items: $align-vertical;
+  margin: $margin;
 }
 
 .container {
@@ -220,6 +227,36 @@ strong {
   &-icon {
     width: 2.4rem;
     height: 2.4rem;
+  }
+}
+
+@mixin icoBeforeElement($svg: $icon-checkmark) {
+  &::before {
+    content: "";
+    background-image: $svg;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+.list {
+  margin-top: -1.2rem;
+  //margin-left: 1.2rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  li {
+    font-size: 1.8rem;
+    line-height: 1.4;
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    @include icoBeforeElement;
   }
 }
 
@@ -527,27 +564,6 @@ strong {
   }
 }
 
-.diets {
-  .list {
-    margin-top: -1.2rem;
-    margin-left: 1.2rem;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-    &-icon {
-      font-size: 3rem;
-      color: $primary;
-    }
-    &-item {
-      font-size: 1.8rem;
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-    }
-  }
-}
-
 .all-recipes {
   text-align: center;
   font-size: 1.8rem;
@@ -601,4 +617,88 @@ strong {
       transform: scale(1.1);
     }
   }
+}
+
+/*--- PRINCING SECTION ---*/
+.section-pricing {
+  padding: 9.6rem 0;
+}
+
+.grid-pricing {
+  @include grid($cols: 2);
+}
+
+.pricing-plan {
+  border-radius: $design-border-radius-medium;
+  padding: 4.8rem;
+  width: 75%;
+
+  &:first-child {
+    justify-self: end;
+    box-shadow: inset 0 0 0 2px $primary-light;
+    li:last-child {
+      @include icoBeforeElement($svg: $icon-close);
+      text-decoration: line-through;
+    }
+  }
+
+  &:last-child {
+    background-color: $primary-light;
+    position: relative;
+    overflow: hidden;
+    &::after {
+      content: "Best value";
+      top: 6%;
+      right: -18%;
+      position: absolute;
+      color: $text-gray-dark;
+      background-color: #ffd43b;
+      padding: 0.8rem 8rem;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      font-weight: $fw-bold;
+      transform: rotate(45deg);
+    }
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 4.8rem;
+  }
+
+  &-name {
+    color: $primary-dark;
+    font-weight: $fw-semibold;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-small;
+    margin-bottom: 3.2rem;
+  }
+
+  &-price {
+    font-size: 6.2rem;
+    font-weight: $fw-semibold;
+    color: $text-gray-dark;
+    margin-bottom: 1.6rem;
+    span {
+      font-size: 3rem;
+      font-weight: $fw-medium;
+      margin-right: 0.8rem;
+    }
+  }
+
+  &-text {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #6f6f6f;
+  }
+
+  &-sign-up {
+    margin-top: 4.8rem;
+    text-align: center;
+  }
+}
+
+.grid-features {
+  @include grid($cols: 4, $margin: 9.6rem 0 0 0);
 }
