@@ -752,7 +752,7 @@ strong {
 
 /*--- CALL-TO-ACTION SECTION ---*/
 .section-cta {
-  padding: 9.6rem 0;
+  padding: 4.8rem 0 12.8rem;
 }
 .cta {
   display: grid;
@@ -829,9 +829,102 @@ strong {
 
 /*--- FOOTER SECTION ---*/
 footer {
-  padding: 9.6rem 0;
+  padding: 12.8rem 0;
+  border-top: 1px solid #eee;
+  transition: background-color 2s;
+  &:hover {
+    background-color: #f7f5f5;
+  }
 }
 
 .footer-grid {
-  @include grid($cols: 5);
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr;
+  column-gap: 4.8rem;
+}
+
+.footer {
+  &-logo {
+    display: block;
+    margin-bottom: 3.2rem;
+  }
+  &-heading {
+    font-size: 1.8rem;
+    font-weight: $fw-medium;
+    margin-bottom: 4rem;
+  }
+
+  &-nav,
+  .social-links,
+  address {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+    a {
+      &:link,
+      &:visited {
+        text-decoration: none;
+        font-size: 1.6rem;
+        color: #767676;
+        transition: all 0.3s;
+        padding-bottom: 0px;
+        border-bottom: 0.2rem solid transparent;
+      }
+
+      &:hover,
+      &:active {
+        color: #555;
+        padding-bottom: 2px;
+        border-bottom: 0.2rem solid $primary;
+      }
+    }
+  }
+
+  .social-links {
+    flex-direction: row;
+    li a:any-link {
+      border-bottom: 0;
+      padding-bottom: 0;
+
+      ion-icon {
+        height: 2.4rem;
+        width: 2.4rem;
+        transition: all 0.3s;
+      }
+    }
+
+    li a:hover,
+    li a:active {
+      ion-icon {
+        transform: scale(1.15);
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: #767676;
+  }
+
+  .logo-col {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    p:last-child {
+      margin-top: auto;
+    }
+  }
+
+  .contacts {
+    font-style: normal;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+    p a {
+      line-height: 1.2;
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
 }
