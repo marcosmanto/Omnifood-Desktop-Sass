@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // --- 01 TYPOGRAPHY ---
 
 /*FONT SIZE SYSTEM (px)
@@ -102,9 +104,15 @@ button.zoom-toggle {
 
 @mixin section-padding($v: 9.6rem, $h: 0) {
   padding: $v $h;
-  @media (max-width: 44em) {
-    padding: $v/2 $h;
-  }
+  // @media (max-width: 44em) {
+  //   padding: math.div($v, 1.5) $h;
+  // }
+}
+
+@mixin span-highlight {
+  display: block;
+  font-size: 3.8rem;
+  line-height: 0.8;
 }
 
 @mixin container($max: $layout-max-width) {
@@ -457,7 +465,7 @@ strong {
   }
 }
 
-.delivered-imgs {
+.hero .delivered-imgs {
   display: flex;
   img {
     height: 4.8rem;
@@ -954,7 +962,7 @@ footer {
   .contacts {
     font-style: normal;
     font-size: 1.6rem;
-    line-height: 1.6rem;
+    line-height: 1.9rem;
     p a {
       line-height: 1.2;
       border-bottom: 0;
@@ -1141,6 +1149,14 @@ footer {
 
 /* below 704px (smaller tablets) */
 @media (max-width: 44em) {
+  .section-featured {
+    padding: 4.8rem 0 3.2rem 0;
+  }
+
+  .section-how {
+    @include section-padding($v: 4.8rem);
+  }
+
   .grid-features,
   .grid-pricing,
   .meals-grid {
@@ -1181,5 +1197,123 @@ footer {
   .logo-col,
   .address-col {
     grid-column: span 3;
+  }
+}
+
+/* below 575px (phones) */
+@media (max-width: 36em) {
+  .grid-features,
+  .grid-pricing,
+  .meals-grid,
+  .step-grid,
+  .testimonials {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-pricing {
+    row-gap: 4.8rem;
+  }
+
+  .hero {
+    padding: 0;
+
+    .delivered-meals {
+      flex-direction: column;
+      .delivered-imgs img {
+        height: 7rem;
+        width: 7rem;
+      }
+    }
+  }
+
+  .section-hero {
+    padding: 2.4rem 0 4.8rem 0;
+  }
+
+  .btn {
+    &,
+    &:link,
+    &:visited {
+      padding: 2.4rem 1.6rem;
+    }
+  }
+
+  .hero img {
+    width: 72%;
+  }
+
+  .heading {
+    &-primary {
+      font-size: 3.6rem;
+    }
+    &-secondary {
+      font-size: 3rem;
+    }
+    &-tertiary {
+      font-size: 2.4rem;
+    }
+  }
+
+  .logos img {
+    height: 1.2rem;
+  }
+
+  .step-img-box {
+    transform: translateY(4rem);
+    &:nth-child(2) {
+      grid-row: 1;
+    }
+    &:last-child {
+      grid-row: 5;
+    }
+  }
+
+  .diets {
+    .list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      li {
+        flex: 1;
+        flex-basis: 35%;
+      }
+    }
+  }
+
+  .testimonials-container {
+    padding-bottom: 4.8rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.2rem;
+  }
+
+  .grid-features {
+    row-gap: 6.4rem;
+  }
+
+  .cta {
+    grid-template-columns: 1fr;
+
+    &-img-box {
+      height: 32rem;
+      grid-row: 1;
+    }
+
+    &-text-box {
+      padding: 3.2rem;
+      .heading-secondary {
+        max-width: 80%;
+        text-align: center;
+        margin-inline: auto;
+        span {
+          @include span-highlight;
+        }
+      }
+    }
+  }
+
+  .section-testimonials .heading-secondary span {
+    @include span-highlight;
   }
 }
