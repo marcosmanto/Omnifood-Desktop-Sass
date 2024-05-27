@@ -100,6 +100,13 @@ button.zoom-toggle {
   }
 }
 
+@mixin section-padding($v: 9.6rem, $h: 0) {
+  padding: $v $h;
+  @media (max-width: 44em) {
+    padding: $v/2 $h;
+  }
+}
+
 @mixin container($max: $layout-max-width) {
   max-width: $max;
   margin-inline: auto !important;
@@ -491,7 +498,7 @@ strong {
 
 /*--- How It Works SECTION ---*/
 .section-how {
-  margin: 9.6rem 0;
+  @include section-padding;
 }
 
 .step {
@@ -550,7 +557,7 @@ strong {
 
 /*--- MEALS SECTION ---*/
 .section-meals {
-  padding: 9.6rem 0;
+  @include section-padding;
 }
 
 .meals-grid {
@@ -666,7 +673,7 @@ strong {
 
 /*--- PRINCING SECTION ---*/
 .section-pricing {
-  padding: 9.6rem 0;
+  @include section-padding;
 }
 
 .grid-pricing {
@@ -1129,5 +1136,50 @@ footer {
     &:visited {
       font-size: 3rem;
     }
+  }
+}
+
+/* below 704px (smaller tablets) */
+@media (max-width: 44em) {
+  .grid-features,
+  .grid-pricing,
+  .meals-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .diets {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+
+  .heading-secondary {
+    margin-bottom: 4.8rem;
+  }
+
+  .pricing-plan {
+    width: 100%;
+  }
+
+  .grid-pricing {
+    column-gap: 4.8rem;
+  }
+
+  .footer {
+    padding: 9.6rem 0;
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(6, 1fr);
+    row-gap: 8rem;
+  }
+
+  .nav-col {
+    grid-row: 1;
+    grid-column: span 2;
+  }
+
+  .logo-col,
+  .address-col {
+    grid-column: span 3;
   }
 }
