@@ -1144,8 +1144,10 @@ footer {
   }
 
   .main-nav {
-    background-color: transparentize($color: #fff, $amount: 0.03);
+    background-color: transparentize($color: #fff, $amount: 0.2);
     position: absolute;
+    -webkit-backdrop-filter: blur(40px);
+    backdrop-filter: blur(10px);
     top: 0;
     left: 0;
     width: 100vw;
