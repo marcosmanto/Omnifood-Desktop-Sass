@@ -5,6 +5,8 @@
   "main": "public/index.html",
   "scripts": {
     "build:sass": "sass --no-source-map src/sass:public/css",
+    "build:js": "babel src/js --out-dir public/js --presets minify --no-comments",
+    "dev-build:js": "babel src/js --out-dir public/js",
     "clear-build": "rimraf public",
     "copy:assets": "copyfiles -u 1 ./src/assets/* ./src/assets/**/* public",
     "copy:html": "copyfiles -u 1 ./src/*.html public",
@@ -12,15 +14,17 @@
     "watch:assets": "onchange './src/assets/**/*' -- npm run copy:assets",
     "watch:html": "onchange './src/*.html' -- npm run copy:html",
     "watch:sass": "sass --watch src/sass:public/css",
+    "watch:js": "onchange './src/js/*.js' -- npm run dev-build:js",
     "watch": "npm-run-all --parallel watch:*",
     "serve": "browser-sync start --server public --files public",
-    "start": "npm-run-all copy --parallel watch serve",
+    "start": "npm-run-all copy --parallel dev-build:js watch serve",
     "build": "npm-run-all copy:html build:*",
     "postbuild": "postcss public/css/*.css -u autoprefixer cssnano -r --no-map"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "browserslist": ">0.3%, defaults",
   "dependencies": {
     "autoprefixer": "^10.4.19",
     "browser-sync": "^3.0.2",
@@ -32,6 +36,11 @@
     "sass": "^1.76.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.6",
+    "@babel/core": "^7.24.6",
+    "@babel/preset-env": "^7.24.6",
+    "babel-plugin-minify-mangle-names": "^0.5.1",
+    "babel-preset-minify": "^0.5.2",
     "rimraf": "^5.0.5"
   }
 }

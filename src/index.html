@@ -10,6 +10,23 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+
+    <script
+      async
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      async
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <script
+      defer
+      source="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"
+    ></script>
+    <script defer src="js/main.js"></script>
+
     <title>Omnifood</title>
   </head>
   <body>
@@ -35,11 +52,13 @@
       /></a>
       <nav class="main-nav">
         <ul class="main-nav-list">
-          <li><a href="#" class="main-nav-link">How it works</a></li>
-          <li><a href="#" class="main-nav-link">Meals</a></li>
-          <li><a href="#" class="main-nav-link">Testimonials</a></li>
-          <li><a href="#" class="main-nav-link">Pricing</a></li>
-          <li><a href="#" class="nav-cta">Try for free</a></li>
+          <li><a href="#how" class="main-nav-link">How it works</a></li>
+          <li><a href="#meals" class="main-nav-link">Meals</a></li>
+          <li>
+            <a href="#testimonials" class="main-nav-link">Testimonials</a>
+          </li>
+          <li><a href="#pricing" class="main-nav-link">Pricing</a></li>
+          <li><a href="#cta" class="nav-cta">Try for free</a></li>
         </ul>
       </nav>
 
@@ -60,10 +79,10 @@
               eat healthy again. Tailored to your personal tastes and
               nutritional needs.
             </p>
-            <a href="#" class="btn btn--full margin-right-sm"
+            <a href="#cta" class="btn btn--full margin-right-sm"
               >Start eating well</a
             >
-            <a href="#" class="btn btn--outline"
+            <a href="#how" class="btn btn--outline"
               >Learn more
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +148,7 @@
         </div>
       </section>
 
-      <section class="section-how">
+      <section class="section-how" id="how">
         <div class="container">
           <div class="subheading">How it works</div>
           <h2 class="heading-secondary">
@@ -197,7 +216,7 @@
         </div>
       </section>
 
-      <section class="section-meals">
+      <section class="section-meals" id="meals">
         <div class="container center-text">
           <div class="subheading">Meals</div>
           <h2 class="heading-secondary">
@@ -304,7 +323,7 @@
         </div>
       </section>
 
-      <section class="section-testimonials testimonials-grid">
+      <section class="section-testimonials testimonials-grid" id="testimonials">
         <div class="testimonials-container">
           <div class="subheading">Testimonials</div>
           <h2 class="heading-secondary">
@@ -402,7 +421,7 @@
         </div>
       </section>
 
-      <section class="section-pricing">
+      <section class="section-pricing" id="pricing">
         <div class="container">
           <div class="subheading">Pricing</div>
           <h2 class="heading-secondary">
@@ -497,7 +516,7 @@
         </div>
       </section>
 
-      <section class="section-cta">
+      <section class="section-cta" id="cta">
         <div class="container">
           <div class="cta">
             <div class="cta-text-box">
@@ -580,7 +599,8 @@
           </ul>
 
           <p class="copyright">
-            Copyright &copy; 2027 by Omniffod, Inc. All rights reserved.
+            Copyright &copy; <span class="year">2027</span> by Omniffod, Inc.
+            All rights reserved.
           </p>
         </div>
         <div class="address-col">
@@ -621,43 +641,5 @@
         </div>
       </div>
     </footer>
-
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
-    <script>
-      const toggleBtn = document.querySelector("button.zoom-toggle");
-      const toggleBtnPath = toggleBtn.querySelector("button svg path");
-      const htmlElement = document.querySelector("html");
-
-      // toggle soon paths
-      const zoomInPath =
-        "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6";
-      const zoomOutPath =
-        "m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6";
-      toggleBtnPath.setAttribute("d", zoomOutPath);
-
-      const toggleZoom = () => {
-        // Get the current font-size of the HTML element
-        const currentFontSize = parseFloat(
-          window.getComputedStyle(htmlElement).getPropertyValue("font-size")
-        );
-        if (currentFontSize <= 6) {
-          htmlElement.style.fontSize = "62.5%";
-          toggleBtnPath.setAttribute("d", zoomOutPath);
-          return;
-        }
-
-        toggleBtnPath.setAttribute("d", zoomInPath);
-        htmlElement.style.fontSize = "28.5%";
-      };
-
-      toggleBtn.addEventListener("click", toggleZoom);
-    </script>
   </body>
 </html>
