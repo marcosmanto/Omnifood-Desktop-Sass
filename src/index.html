@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Omniffod is the best place to eat well."
+    />
+
+    <link rel="icon" href="assets/favicon.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -27,10 +36,10 @@
     ></script>
     <script defer src="js/main.js"></script>
 
-    <title>Omnifood</title>
+    <title>Omnifood &mdash; Never cook again</title>
   </head>
   <body>
-    <button type="button" class="zoom-toggle">
+    <button type="button" class="zoom-toggle" aria-label="Toggle page zoom">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -130,7 +139,11 @@
             </div>
           </div>
           <div class="hero-img-box">
-            <img src="assets/hero.png" />
+            <picture>
+              <source srcset="assets/hero.webp" type="image/webp" />
+              <source srcset="assets/hero.png" type="image/png" />
+              <img src="assets/hero.png" alt="Hero image" />
+            </picture>
           </div>
         </div>
       </section>
@@ -172,7 +185,7 @@
           </div>
           <div class="step-img-box">
             <img
-              src="assets/app/app-screen-1.png"
+              src="assets/app/app-screen-1.webp"
               alt="iPhone app preferences selection app-screen-1"
               class="step-img"
             />
@@ -181,7 +194,7 @@
           <!-- STEP 02 -->
           <div class="step-img-box">
             <img
-              src="assets/app/app-screen-2.png"
+              src="assets/app/app-screen-2.webp"
               alt="iPhone app meal approving plan"
               class="step-img"
             />
@@ -208,7 +221,7 @@
           </div>
           <div class="step-img-box">
             <img
-              src="assets/app/app-screen-3.png"
+              src="assets/app/app-screen-3.webp"
               alt="iPhone app delivery screen"
               class="step-img"
             />
@@ -588,13 +601,19 @@
 
           <ul class="social-links">
             <li>
-              <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+              <a href="#" aria-label="Read more about..."
+                ><ion-icon name="logo-instagram"></ion-icon
+              ></a>
             </li>
             <li>
-              <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+              <a href="#" aria-label="Read more about..."
+                ><ion-icon name="logo-facebook"></ion-icon
+              ></a>
             </li>
             <li>
-              <a href="#"><ion-icon name="logo-twitter"></ion-icon></a>
+              <a href="#" aria-label="Read more about..."
+                ><ion-icon name="logo-twitter"></ion-icon
+              ></a>
             </li>
           </ul>
 

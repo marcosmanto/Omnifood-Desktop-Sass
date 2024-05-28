@@ -9,7 +9,7 @@
     "dev-build:js": "babel src/js --out-dir public/js",
     "clear-build": "rimraf public",
     "copy:assets": "copyfiles -u 1 ./src/assets/* ./src/assets/**/* public",
-    "copy:html": "copyfiles -u 1 ./src/*.html public",
+    "copy:html": "copyfiles -u 1 ./src/*.html ./src/manifest.webmanifest public",
     "copy": "npm run clear-build && npm-run-all --parallel copy:*",
     "watch:assets": "onchange './src/assets/**/*' -- npm run copy:assets",
     "watch:html": "onchange './src/*.html' -- npm run copy:html",
